@@ -15,6 +15,9 @@ public class ShurikenThrower : MonoBehaviour
     [Tooltip("手裏剣が出てくる位置と向き")]
     [SerializeField] Transform spawnPoint;
 
+    [Tooltip("テスト用：オンにすると1ラウンド1回の制限なしで何度でも投げられる(Testシーンでのみオンにする)")]
+    [SerializeField] bool unlimitedThrows = false;
+
 
     bool hasThrown = false;     // 投げたかどうか(trueなら投げられない)
 
@@ -39,7 +42,8 @@ public class ShurikenThrower : MonoBehaviour
     // 手裏剣を投げる
     void Throw()
     {
-        hasThrown = true;   // 投げたので、以降は入力を無視する
+        // テスト用の設定がオンなら制限しない
+        if (!unlimitedThrows) hasThrown = true;   // 投げたので、以降は入力を無視する
 
         // プレハブのコピーをSpawnPointの位置・向きで生成する
         // 生成された手裏剣はShuriken.csによって自動で前に飛んでいく

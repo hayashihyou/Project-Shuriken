@@ -318,6 +318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShurikenThrower
   shurikenPrefab: {fileID: 6111375291769789301, guid: c11b08054e8dc23449fc537269b064c7, type: 3}
   spawnPoint: {fileID: 482971215}
+  unlimitedThrows: 1
 --- !u!4 &1225166807
 Transform:
   m_ObjectHideFlags: 0
