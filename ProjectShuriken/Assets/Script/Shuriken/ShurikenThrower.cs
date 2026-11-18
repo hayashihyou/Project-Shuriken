@@ -9,6 +9,9 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class ShurikenThrower : MonoBehaviour
 {
+    /// <summary> 手裏剣を投げた瞬間に呼ばれる </summary>
+    public event System.Action OnThrow;
+
     [Tooltip("生成する手裏剣のプレハブ")]
     [SerializeField] Shuriken shurikenPrefab;
 
@@ -48,6 +51,9 @@ public class ShurikenThrower : MonoBehaviour
         // プレハブのコピーをSpawnPointの位置・向きで生成する
         // 生成された手裏剣はShuriken.csによって自動で前に飛んでいく
         Instantiate(shurikenPrefab, spawnPoint.position, spawnPoint.rotation);
+
+        // 投げたことを通知する
+        OnThrow?.Invoke();
     }
 
 
@@ -55,5 +61,12 @@ public class ShurikenThrower : MonoBehaviour
     public void ResetThrow()
     {
         hasThrown = false;
+    }
+
+
+    // 投げられない状態にする。ラウンドの合間やゲーム終了後にGameManagerから呼ばれる
+    public void Lock()
+    {
+        hasThrown = true;
     }
 }
